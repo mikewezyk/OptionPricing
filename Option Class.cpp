@@ -56,14 +56,10 @@ Option::Option(double price, double strike,double up, double down, int numberSte
 			stockTree[i][j].price = S0*pow(upfactor, j)*pow(downfactor,i - j);
 			stockTree[i][j].time = i+1;
 			stockTree[i][j].payoff = optionPayoff(stockTree[i][j].price,K);
-			cout << stockTree[i][j].time << " " << stockTree[i][j].price << " " << stockTree[i][j].payoff << endl;
 		}
 		cout << endl;
 	}
 	tree = stockTree;
 }
 
-int main(){
-	Option O = Option(50, 55, 2, 0.5, 4, "Call");
-}
 
