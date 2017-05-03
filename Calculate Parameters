@@ -7,11 +7,12 @@ calcParam = function(symbol,exp){
   data = getSymbols(symbol,src = "yahoo", from = start, to = Sys.Date(), auto.assign = FALSE)
   returns = diff(log(data[,6]))[-1]
   vol = sd(returns) * sqrt(252)
-  U = exp(vol * sqrt(1/252))
-  D = exp(vol* -1 * sqrt(1/252))
+  deltaT = 1/252
+  U = exp(vol * sqrt(deltaT))
+  D = exp(vol* -1 * sqrt(deltaT))
   getSymbols("DGS3MO", src = "FRED")
   rf = tail(DGS3MO,n=1)/100
-  p = (1+rf-D)/(U-D) 
+  p = (1+exp(rf*deltaT)-D)/(U-D) 
   q = (U-1-rf)/(U-D)
   results = c(vol,U,D,p,q)
   return(results)
@@ -21,4 +22,3 @@ cInfo = read.csv("writeOut.csv",header=FALSE)
 ticker = cInfo$V1[1]
 optionExp = cInfo$V1[2]
 calcParam(ticker,optionExp)
-
