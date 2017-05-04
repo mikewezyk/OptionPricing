@@ -1,6 +1,5 @@
 #Format exp as: "YYYY-MM-DD"
-#Returns vector in form: S0, Vol, r
-
+#Returns vector in form: S0, Vol, r, n
 
 calcParam = function(symbol,exp){
   #Queries data from Quantmod
@@ -13,7 +12,9 @@ calcParam = function(symbol,exp){
   rf = tail(DGS3MO,n=1)/100
   price = tail(data[,6],n=1)
   price = as.double(price[1,1])
-  results = c(price,vol,rf)
+  n = as.Date(exp,format="%Y-%m-%d") - Sys.Date()
+  n = as.double(n)
+  results = c(price,vol,rf,n)
   write.csv(results, "readIn.csv", row.names = FALSE)
   #return(results)
 }
