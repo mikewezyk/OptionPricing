@@ -1,4 +1,4 @@
-#include "stdafx.h"
+
 #include "AmericanAsian.h"
 
 //Calculates Current Value of a European Style Asian Option
