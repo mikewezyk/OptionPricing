@@ -83,8 +83,9 @@ int main(int argc, char* argv[])
     
     //Get Strike Price
     double strike;
-    std::cout << "Please enter a strike price (double) for your option: \n ";
+    std::cout << "Please enter a strike price (double) for your option: \nInput: ";
     std::cin >> strike;
+    std::cout << "---------------------------------------------------------------------------\n";
     
     RInside R(argc, argv);              // create an embedded R instance
     
